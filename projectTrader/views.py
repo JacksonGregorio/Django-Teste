@@ -6,8 +6,10 @@ import json
 
 
 def user_list(request):
-    users = list(User.objects.values())  
-    return JsonResponse(users, safe=False)
+    if request.method == "GET":
+        users = list(User.objects.values())  
+        return JsonResponse(users, safe=False)
+    return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
 
 @csrf_exempt
 def user_create(request):

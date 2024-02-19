@@ -1,3 +1,19 @@
 from django.db import models
 
-# Create your models here.
+class User(models.Model):
+    USER_TYPE_CHOICES = [
+        (1, 'client'),
+        (2, 'admin'),
+        (3, 'more'),
+    ]
+    
+    name = models.CharField(max_length=200)
+    password = models.CharField(max_length=200)
+    email = models.CharField(max_length=50)
+    score = models.DecimalField(max_digits=5)
+    type = models.IntegerField(choices= USER_TYPE_CHOICES, default=1)
+
+    
+    
+
+

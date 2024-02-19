@@ -1,8 +1,12 @@
 from django.contrib import admin
 from django.urls import path
-from projectTrader.views import index
+from django.urls import path
+from . import views
 
 urlpatterns = [
-    path('', index, name='index'),
+    path('users/', views.user_list, name='user_list'),
+    path('user/create/', views.user_create, name='user_create'),
+    path('user/<int:pk>/update/', views.user_update, name='user_update'),
+    path('user/<int:pk>/delete/', views.user_delete, name='user_delete'),
+    path('user/<int:pk>/check', views.check_user, name='check_user'),
 ]
-

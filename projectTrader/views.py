@@ -42,6 +42,7 @@ def check_user(request, pk):
     if request.method == "GET":
         user = User.objects.get(pk=pk)
         return JsonResponse({'id': user.pk, 'name': user.name, 'email': user.email, 'score': user.score, 'type': user.type})
+    return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
     
 @csrf_exempt
 def zero_score(request, pk):
@@ -51,6 +52,7 @@ def zero_score(request, pk):
         user.score = 0
         user.save()
         return JsonResponse({'id': user.pk, 'score': user.score})
+    return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
     
 @csrf_exempt
 def order_by_score(request):

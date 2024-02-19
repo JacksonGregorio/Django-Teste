@@ -43,6 +43,15 @@ def check_user(request, pk):
         user = User.objects.get(pk=pk)
         return JsonResponse({'id': user.pk, 'name': user.name, 'email': user.email, 'score': user.score, 'type': user.type})
     
+@csrf_exempt
+def zero_score(request, pk):
+    user = get_object_or_404(User, pk=pk)
+    if request.method == "POST":
+        user = User.objects.get(pk=pk)
+        user.score = 0
+        user.save()
+        return JsonResponse({'id': user.pk, 'score': user.score})
+    
 
 
 

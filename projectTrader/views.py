@@ -52,6 +52,13 @@ def zero_score(request, pk):
         user.save()
         return JsonResponse({'id': user.pk, 'score': user.score})
     
+@csrf_exempt
+def order_by_score(request):
+    if request.method == "GET":
+        users = list(User.objects.values().order_by('-score'))
+        return JsonResponse(users, safe=False)
+    return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
+    
 
 
 

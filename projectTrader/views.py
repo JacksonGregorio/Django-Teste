@@ -6,24 +6,24 @@ import json
 
 
 def user_list(request):
-    users = list(User.objects.values())  # convert QuerySet to list of dicts
+    users = list(User.objects.values())  
     return JsonResponse(users, safe=False)
 
 @csrf_exempt
 def user_create(request):
     if request.method == "POST":
-        data = json.loads(request.body)  # load JSON data from request
-        user = User.objects.create(**data)  # create new User from data
-        return JsonResponse({'id': user.pk}, status=201)  # return new user ID
+        data = json.loads(request.body)  
+        user = User.objects.create(**data)  
+        return JsonResponse({'id': user.pk}, status=201)  
     return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
 
 @csrf_exempt
 def user_update(request, pk):
     user = get_object_or_404(User, pk=pk)
     if request.method == "POST":
-        data = json.loads(request.body)  # load JSON data from request
+        data = json.loads(request.body)  
         for field, value in data.items():
-            setattr(user, field, value)  # update fields from data
+            setattr(user, field, value) 
         user.save()
         return JsonResponse({'id': user.pk})
     return JsonResponse({'error': 'Invalid HTTP method'}, status=405)

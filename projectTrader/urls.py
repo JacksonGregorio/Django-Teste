@@ -11,4 +11,5 @@ urlpatterns = [
     path('user/<int:pk>/check', views.check_user, name='check_user'),
     path('user/<int:pk>/zero', views.zero_score, name='zero_score'),
     path('users/order', views.order_by_score, name='order_by_score'),
+    path('users/name', views.order_by_name, name='order_by_name'),
 ]

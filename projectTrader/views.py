@@ -62,6 +62,15 @@ def order_by_score(request):
         users = list(User.objects.values().order_by('-score'))
         return JsonResponse(users, safe=False)
     return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
+
+@csrf_exempt
+def order_by_name(request):
+    if request.method == "GET":
+        users = list(User.objects.values().order_by('name'))
+        return JsonResponse(users, safe=False)
+    return JsonResponse({'error': 'Invalid HTTP method'}, status=405)
+
+
     
 
 

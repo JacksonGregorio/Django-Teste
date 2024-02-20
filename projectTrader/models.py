@@ -13,6 +13,9 @@ class User(models.Model):
     score = models.DecimalField(max_digits=5, decimal_places=0, default=0)
     type = models.IntegerField(choices= USER_TYPE_CHOICES, default=1)
 
+    def __str__(self):
+        return self.name
+
     
     
 

@@ -12,4 +12,5 @@ urlpatterns = [
     path('user/<int:pk>/zero', views.zero_score, name='zero_score'),
     path('users/order', views.order_by_score, name='order_by_score'),
     path('users/name', views.order_by_name, name='order_by_name'),
+    path('users/type', views.order_by_type, name='order_by_type'),
 ]
